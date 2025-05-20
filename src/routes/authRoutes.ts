@@ -1,4 +1,4 @@
-import { Router } from 'express';
+
 import {
   forgotPassword,
   login,
@@ -7,7 +7,8 @@ import {
   verifyOTP,
 } from '../controllers/authController';
 
-const router = Router();
+import express from 'express';
+const router = express.Router();
 
 router.post('/signup', signup);
 router.post('/verify-otp', verifyOTP);

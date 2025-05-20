@@ -7,14 +7,29 @@ import authRoutes from './routes/authRoutes';
 
 dotenv.config();
 
+
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://starter-kit-alpha-one.vercel.app'
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000', // frontend origin
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 }));
-app.use(express.json());
+
+app.use(express.json());  
 
 app.use('/api/auth', authRoutes);
 
