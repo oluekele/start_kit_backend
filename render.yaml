@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: starter_kit_backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://ekeleolu1:Applying@starterkit.nlz8ur8.mongodb.net/?retryWrites=true&w=majority&appName=starterKit
+      - key: JWT_SECRET
+        value: your_jwt_secret
+      - key: PORT
+        value: 5000
