@@ -1,14 +1,25 @@
 services:
   - type: web
-    name: starter_kit_backend
+    name: starter-kit-backend
     env: node
-    rootDir: backend
-    buildCommand: npm install
-    startCommand: node server.js
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: node dist/server.js
     envVars:
+      - key: PORT
+        value: 5000
       - key: MONGODB_URI
         value: mongodb+srv://ekeleolu1:Applying@starterkit.nlz8ur8.mongodb.net/?retryWrites=true&w=majority&appName=starterKit
       - key: JWT_SECRET
         value: your_jwt_secret
-      - key: PORT
-        value: 5000
+      - key: SMTP_HOST
+        value: smtp.mailtrap.io
+      - key: SMTP_PORT
+        value: 2525
+      - key: SMTP_USER
+        value: your_user
+      - key: SMTP_PASS
+        value: your_pass
+      - key: RESEND_API_KEY
+        value: re_i6HgaiVh_H3G71p3hHnt1dHANmz8HWs4f
